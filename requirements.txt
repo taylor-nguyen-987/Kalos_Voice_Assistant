@@ -1,0 +1,5 @@
+deepspeech==0.9.3
+numpy==1.19.5
+Pillow==8.4.0
+PyAudio==0.2.11
+pygame==2.1.0
