@@ -2,6 +2,7 @@ import tkinter as tk
 import pages
 
 class App(tk.Tk):
+    """MAIN APP"""
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         window = tk.Frame(self)
@@ -11,7 +12,7 @@ class App(tk.Tk):
         window.grid_columnconfigure(0, weight=1)
 
 
-        self.title("Poké Beanie")
+        self.title("Kalosdex")
         self.geometry("400x500") #widthxheight
         photo = tk.PhotoImage(file="imgs/pokeball.png")
         self.iconphoto(False, photo)

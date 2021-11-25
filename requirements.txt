@@ -1,5 +1,9 @@
+autoscraper==1.1.12
+beautifulsoup4==4.9.3
+bs4==0.0.1
 deepspeech==0.9.3
 numpy==1.19.5
 Pillow==8.4.0
 PyAudio==0.2.11
 pygame==2.1.0
+requests==2.26.0

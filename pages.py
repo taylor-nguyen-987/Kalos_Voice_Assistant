@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkhtmlview import HTMLLabel
 from deepspeech_audio import Audio
 import threading as thrd
 from PIL import ImageTk, Image
@@ -7,6 +8,7 @@ import pygame
 listening = False #Boolean variable for the bot to decide whether to listen or not
 
 class HomePage(tk.Frame):
+    """HOME PAGE"""
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
         self.parent = parent
@@ -35,6 +37,7 @@ class HomePage(tk.Frame):
         self.parent.geometry("400x640")
 
 class ChatBotPage(tk.Frame):
+    """CONVERSATION PAGE"""
     def __init__(self, parent):
         tk.Frame.__init__(self, parent)
         self.parent = parent
