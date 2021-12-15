@@ -1,11 +1,10 @@
 import tkinter as tk
-from tkhtmlview import HTMLLabel
-from deepspeech_audio import Audio
+from speech_to_text import VoiceInput
+from generate_speech import Response
+from text_to_speech import SpeakerOutput
 import threading as thrd
 from PIL import ImageTk, Image
 import pygame
-
-listening = False #Boolean variable for the bot to decide whether to listen or not
 
 class HomePage(tk.Frame):
     """HOME PAGE"""
@@ -14,10 +13,10 @@ class HomePage(tk.Frame):
         self.parent = parent
 
         pygame.mixer.init()
-        pygame.mixer.music.load("music/pokemusic.mp3")
+        pygame.mixer.music.load("media/pokemusic.mp3")
         pygame.mixer.music.play(loops=0)
 
-        image1 = Image.open("imgs/original.png")
+        image1 = Image.open("media/original.png")
         test = ImageTk.PhotoImage(image1)
 
         self.label1 = tk.Label(image=test)
@@ -42,7 +41,7 @@ class ChatBotPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.parent = parent
 
-        image1 = Image.open("imgs/openpd.png")
+        image1 = Image.open("media/openpd.png")
         test = ImageTk.PhotoImage(image1)
 
         self.label1 = tk.Label(image=test)
@@ -53,27 +52,33 @@ class ChatBotPage(tk.Frame):
         self.txt.pack()
         self.txt.configure(font=("Arial", 10, "bold"), background="#CCFFFF")
 
-        self.listen = tk.Button(parent, bg="#8cfffb", text="   Start", font=('Arial', 10, 'bold'),
+        self.listen = tk.Button(parent, bg="#8cfffb", text="Start", font=('Arial', 10, 'bold'),
                   command=self.thread, width=10)
         self.listen.pack()
 
     def thread(self):
-        th=thrd.Thread(target=self.switch)
+        th=thrd.Thread(target=self.listening)
         th.start()
 
-    def switch(self):
-        """Makes the bot start listening and stops the bot from listening
-        when button is clicked again"""
-        global listening
-        if listening is True: #turn off the bot
-            listening = False
-            self.listen.config(text="Start")
-        else: #if it is not listening
-            aud_obj = Audio()
-            listening = True
-            self.listen.config(text="   Stop")
-            text = aud_obj.get_result()
-            newline = "\n"
-            self.txt.insert(tk.END, f"{newline}You: {text}")
+    def listening(self):
+        
+        #Voice Input
+        self.listen.config(text="Listening...")
+        aud_obj = VoiceInput()
+        text = aud_obj.get_input()
+        newline = "\n"
+        #self.txt.insert(tk.END, f"{newline}You: {text}")
 
+        #Response
+        self.listen.config(text="Speaking...")
+        res = Response()
+        res = res.get_response(text.split()) #convert the text into an array
+        self.txt.insert(tk.END, f"{newline}{newline}Answer: {res}")
+        
 
+        #Speaker Output
+        speaker = SpeakerOutput()
+        speaker.t_t_s(res)
+
+        #Reset button
+        self.listen.config(text="Start")

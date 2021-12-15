@@ -11,10 +11,9 @@ class App(tk.Tk):
         window.grid_rowconfigure(0, weight=1)
         window.grid_columnconfigure(0, weight=1)
 
-
         self.title("Kalosdex")
         self.geometry("400x500") #widthxheight
-        photo = tk.PhotoImage(file="imgs/pokeball.png")
+        photo = tk.PhotoImage(file="media/pokeball.png")
         self.iconphoto(False, photo)
 
         self.curr_frame = None
