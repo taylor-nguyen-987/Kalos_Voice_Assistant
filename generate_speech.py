@@ -1,6 +1,3 @@
-import enchant
-from nltk.corpus import stopwords
-from nltk import word_tokenize
 import json
 
 class Response:
@@ -49,21 +46,3 @@ class Response:
             return response
         else:
             return "Pokemon cannot be identified."
-            
-class SpellChecker:
-
-    """Corrects the voice input if needed"""
-    #TODO: POST EDITING STRINGS
-
-    def correct(self, string):
-        #Identifies keys words in the phrase and gets the name of the pokemon the user is trying to ask about
-
-        #Normalize the string
-        string = string.lower() #lowercase string
-        clean_input = " ".join([word for word in string.split() if word not in stopwords.words('english')]) #remove stopwords
-
-        poke_dict = enchant.PyPWL("pokemon_names.txt")
-        
-        #Tokenization
-        tokens = word_tokenize(clean_input)
-        print(tokens)
