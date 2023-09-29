@@ -7,7 +7,7 @@ class VoiceInput:
     def get_input(self):
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            audio = r.listen(source)
+            audio = r.listen(source, timeout=5, phrase_time_limit=8)
             input = None
 
             try:
