@@ -1,4 +1,4 @@
-# Pokedex Voice Assistant
+# Kalosdex Voice Assistant
 
 ## About
 A Tkinter application for people to learn more about Pokémon and their stats!
