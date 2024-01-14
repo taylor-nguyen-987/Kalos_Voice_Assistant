@@ -1,7 +1,7 @@
-# Kalosdex Voice Assistant GUI
+# Pokedex Voice Assistant
 
 ## About
-A Tkinter app for people curious about the Kalos Region in the Pokémon World. (Pokemon X and Y) :globe_with_meridians:
+A Tkinter application for people to learn more about Pokémon and their stats!
 
 ## Application
 
